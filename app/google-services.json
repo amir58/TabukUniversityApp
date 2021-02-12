@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "492871491125",
+    "project_id": "tabukuniverstyapp",
+    "storage_bucket": "tabukuniverstyapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:492871491125:android:bfa5cd741f30b2e9011b7c",
+        "android_client_info": {
+          "package_name": "com.tabuk.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "492871491125-imdbk0q6o5djr1ka6au5chtpfgv89jl6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAZwqRsnCSG5xZGFR8ObWCmFphc3fp6Kzk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "492871491125-imdbk0q6o5djr1ka6au5chtpfgv89jl6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

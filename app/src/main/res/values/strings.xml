@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Tabuk App</string>
+    <string name="welcome_to_tabuk_app">Welcome to Tabuk App</string>
+    <string name="join_as_a_guest">Join as a guest</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+    <string name="title_activity_visitor_maps">Map</string>
+    <string name="show_places">Show places</string>
+</resources>
