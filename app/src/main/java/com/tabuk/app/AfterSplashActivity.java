@@ -7,10 +7,10 @@ import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.tabuk.app.databinding.ActivityAfterSplashActivityBinding;
+
+import es.dmoral.toasty.Toasty;
 
 public class AfterSplashActivity extends AppCompatActivity {
     ActivityAfterSplashActivityBinding binding;
@@ -23,6 +23,27 @@ public class AfterSplashActivity extends AppCompatActivity {
         isPaid();
 
         binding.joinAsGuest.setOnClickListener(v -> navigateToMapsVisitor());
+        binding.btnRegister.setOnClickListener(v -> navigateToRegister());
+        binding.btnLogin.setOnClickListener(v -> getDataFromUi());
+    }
+
+    private void getDataFromUi() {
+        String name = binding.etEmail.getText().toString().trim();
+
+        if (name.isEmpty()) {
+            Toasty.error(AfterSplashActivity.this, "Email required").show();
+            return;
+        }
+
+        if (name.equals("student@tabuk.com")) {
+            navigateToStudentScreen();
+        }
+
+    }
+
+    private void navigateToStudentScreen() {
+        Intent intent = new Intent(AfterSplashActivity.this, MainStudentActivity.class);
+        startActivity(intent);
     }
 
     private void isPaid() {
@@ -41,6 +62,11 @@ public class AfterSplashActivity extends AppCompatActivity {
 
     private void navigateToMapsVisitor() {
         Intent intent = new Intent(AfterSplashActivity.this, VisitorMapsActivity.class);
+        startActivity(intent);
+    }
+
+    private void navigateToRegister() {
+        Intent intent = new Intent(AfterSplashActivity.this, RegisterActivity.class);
         startActivity(intent);
     }
 

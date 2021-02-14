@@ -36,16 +36,21 @@ public class VisitorMapsActivity extends FragmentActivity implements OnMapReadyC
      * it inside the SupportMapFragment. This method will only be triggered once the user has
      * installed Google Play services and returned to the app.
      */
+
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
         mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
         // Add a marker in Sydney and move the camera
-        LatLng tabuk = new LatLng(28.384802159174495,36.47511966526508);
-//        mMap.addMarker(new MarkerOptions().position(tabuk).title("Marker in university of tabuk"));
-        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(tabuk, 14));
+        LatLng tabuk = new LatLng(25.174848907056965,37.276403456926346);
+        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(tabuk, 16.5f));
 
         mMap.setOnMapClickListener(this);
+
+        mMap.addMarker(new MarkerOptions()
+                .position(new LatLng(25.1736752359273,37.276811487972736))
+                .title("Football stadium"));
+
     }
 
     private static final String TAG = "VisitorMapsActivity";
