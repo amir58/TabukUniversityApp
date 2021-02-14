@@ -17,11 +17,12 @@ public class MainStudentActivity extends AppCompatActivity {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main_student);
 
         binding.mapLayout.setOnClickListener(v -> startActivity(new Intent(this, VisitorMapsActivity.class)));
-        binding.mapLayout.setOnClickListener(v -> startActivity(new Intent(this, VisitorMapsActivity.class)));
+        binding.officesLayout.setOnClickListener(v -> startActivity(new Intent(this, VisitorMapsActivity.class)));
         binding.examLayout.setOnClickListener(v -> startActivity(new Intent(this, ExamsActivity.class)));
         binding.lecturesLayout.setOnClickListener(v -> startActivity(new Intent(this, LecturesActivity.class)));
         binding.updateProfileLayout.setOnClickListener(v -> startActivity(new Intent(this, UpdateProfileActivity.class)));
         binding.changePasswordLayout.setOnClickListener(v -> startActivity(new Intent(this, ChangePasswordActivity.class)));
+
     }
 
 }

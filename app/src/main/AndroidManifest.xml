@@ -15,7 +15,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TabukUniverstyApp">
-        <activity android:name=".ExamsActivity"></activity>
+        <activity android:name=".ExamsListActivity"></activity>
+        <activity android:name=".LecturesListActivity" />
+        <activity android:name=".ExamsActivity" />
         <activity android:name=".LecturesActivity" />
         <activity android:name=".UpdateProfileActivity" />
         <activity android:name=".ChangePasswordActivity" />

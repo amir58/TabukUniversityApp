@@ -12,6 +12,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:weightSum="8"
+        android:background="@color/background"
         tools:context=".ExamsActivity">
 
         <com.google.android.material.card.MaterialCardView

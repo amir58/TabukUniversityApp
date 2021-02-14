@@ -29,14 +29,22 @@ public class AfterSplashActivity extends AppCompatActivity {
 
     private void getDataFromUi() {
         String name = binding.etEmail.getText().toString().trim();
+        String password = binding.etPassword.getText().toString().trim();
 
         if (name.isEmpty()) {
-            Toasty.error(AfterSplashActivity.this, "Email required").show();
+            Toasty.info(AfterSplashActivity.this, "Email required").show();
             return;
         }
 
-        if (name.equals("student@tabuk.com")) {
+        if (password.isEmpty()) {
+            Toasty.info(AfterSplashActivity.this, "Password required").show();
+            return;
+        }
+
+        if (name.equals("student@tabuk.com") && password.equals("123456")) {
             navigateToStudentScreen();
+        } else {
+            Toasty.error(AfterSplashActivity.this, "Email or password wrong").show();
         }
 
     }
