@@ -50,7 +50,6 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.LectureHolde
             map.put("active", !user.isActive());
 
             firestore.collection("users").document(user.getAuthId()).update(map);
-            Toasty.success(v.getContext(), "Deleted").show();
         });
 
     }

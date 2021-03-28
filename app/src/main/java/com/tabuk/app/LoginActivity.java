@@ -100,7 +100,7 @@ public class LoginActivity extends AppCompatActivity {
                 break;
 
             case "admin":
-                 intent = new Intent(LoginActivity.this, MainActivity.class);
+                 intent = new Intent(LoginActivity.this, MainAdminActivity.class);
 
                 break;
 

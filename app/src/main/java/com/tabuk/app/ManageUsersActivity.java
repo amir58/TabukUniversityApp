@@ -38,6 +38,7 @@ public class ManageUsersActivity extends AppCompatActivity {
         firestore.collection("users").addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
+                users.clear();
                 for (DocumentSnapshot snapshot : value.getDocuments()) {
                     User user = snapshot.toObject(User.class);
                     users.add(user);
