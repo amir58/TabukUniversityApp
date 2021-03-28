@@ -5,6 +5,7 @@ import androidx.databinding.DataBindingUtil;
 
 import android.os.Bundle;
 
+import com.tabuk.app.adatper.ExamsAdapter;
 import com.tabuk.app.databinding.ActivityExamsListBinding;
 
 public class ExamsListActivity extends AppCompatActivity {

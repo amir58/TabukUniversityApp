@@ -6,11 +6,24 @@ public class User {
     private String phone;
     private boolean active = true;
     private String rule = "user";
+    private String authId;
 
-    public User(String name, String id, String phone) {
+    public User() {
+    }
+
+    public User(String name, String id, String phone, String authId) {
         this.name = name;
         this.id = id;
         this.phone = phone;
+        this.authId = authId;
+    }
+
+    public String getAuthId() {
+        return authId;
+    }
+
+    public void setAuthId(String authId) {
+        this.authId = authId;
     }
 
     public String getRule() {

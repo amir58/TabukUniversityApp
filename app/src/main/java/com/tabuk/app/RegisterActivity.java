@@ -32,12 +32,12 @@ public class RegisterActivity extends AppCompatActivity {
 
     public void register(View view) {
         String name = binding.etName.getText().toString().trim();
-        String id = binding.etName.getText().toString().trim();
-        String phone = binding.etName.getText().toString().trim();
-        String email = binding.etName.getText().toString().trim();
-        String password = binding.etName.getText().toString().trim();
+        String id = binding.etId.getText().toString().trim();
+        String phone = binding.etPhone.getText().toString().trim();
+        String email = binding.etEmail.getText().toString().trim();
+        String password = binding.etPassword.getText().toString().trim();
 
-        User user = new User(name, id, phone);
+        User user = new User(name, id, phone, "authId");
 
         auth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -55,6 +55,8 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void addUserDataToCloudFirestore(User user) {
+        user.setAuthId(auth.getUid());
+
         firestore.collection("users")
                 .document(auth.getUid())
                 .set(user)

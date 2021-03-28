@@ -1,22 +1,22 @@
-package com.tabuk.app;
+package com.tabuk.app.adatper;
 
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.tabuk.app.databinding.ItemLectureBinding;
+import com.tabuk.app.R;
+import com.tabuk.app.databinding.ItemExamBinding;
 
-public class LecturesAdapter extends RecyclerView.Adapter<LecturesAdapter.LectureHolder> {
+public class ExamsAdapter extends RecyclerView.Adapter<ExamsAdapter.LectureHolder> {
 
 
     @NonNull
     @Override
     public LectureHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new LectureHolder(DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()), R.layout.item_lecture, parent, false));
+        return new LectureHolder(DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()), R.layout.item_exam, parent, false));
     }
 
     @Override
@@ -30,9 +30,9 @@ public class LecturesAdapter extends RecyclerView.Adapter<LecturesAdapter.Lectur
     }
 
     class LectureHolder extends RecyclerView.ViewHolder {
-        ItemLectureBinding binding;
+        ItemExamBinding binding;
 
-        public LectureHolder(@NonNull ItemLectureBinding binding) {
+        public LectureHolder(@NonNull ItemExamBinding binding) {
             super(binding.getRoot());
             this.binding = binding;
         }
