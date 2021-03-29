@@ -6,6 +6,8 @@ import androidx.databinding.DataBindingUtil;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -21,12 +23,25 @@ public class RegisterActivity extends AppCompatActivity {
     ActivityRegisterBinding binding;
     FirebaseAuth auth = FirebaseAuth.getInstance();
     FirebaseFirestore firestore = FirebaseFirestore.getInstance();
+    String[] faculties = {"Computer science", "Nursing", "Language and translations",
+            "Mathematics", "Arabic Language", "Islamic studies"};
+
+    String selectedFaculty = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_register);
 
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, faculties);
+        binding.faculties.setAdapter(adapter);
+
+        binding.faculties.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                selectedFaculty = faculties[position];
+            }
+        });
     }
 
 
@@ -37,7 +52,12 @@ public class RegisterActivity extends AppCompatActivity {
         String email = binding.etEmail.getText().toString().trim();
         String password = binding.etPassword.getText().toString().trim();
 
-        User user = new User(name, id, phone, "authId");
+        if (name.isEmpty() || id.isEmpty() || phone.isEmpty() || email.isEmpty() || password.isEmpty() || selectedFaculty.isEmpty()) {
+            Toasty.error(this, "Fill all data").show();
+            return;
+        }
+
+        User user = new User(name, id, phone, "authId", selectedFaculty);
 
         auth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {

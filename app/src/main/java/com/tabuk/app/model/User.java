@@ -4,18 +4,28 @@ public class User {
     private String name;
     private String id;
     private String phone;
-    private boolean active = true;
+    private boolean active = false;
     private String rule = "user";
     private String authId;
+    private String faculty;
 
     public User() {
     }
 
-    public User(String name, String id, String phone, String authId) {
+    public User(String name, String id, String phone, String authId, String faculty) {
         this.name = name;
         this.id = id;
         this.phone = phone;
         this.authId = authId;
+        this.faculty = faculty;
+    }
+
+    public String getFaculty() {
+        return faculty;
+    }
+
+    public void setFaculty(String faculty) {
+        this.faculty = faculty;
     }
 
     public String getAuthId() {
