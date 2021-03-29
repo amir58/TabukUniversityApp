@@ -44,7 +44,6 @@ public class RegisterActivity extends AppCompatActivity {
         });
     }
 
-
     public void register(View view) {
         String name = binding.etName.getText().toString().trim();
         String id = binding.etId.getText().toString().trim();

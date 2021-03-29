@@ -6,6 +6,7 @@ import androidx.databinding.DataBindingUtil;
 
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -79,7 +80,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 if (task.isSuccessful()) {
                     User user = task.getResult().toObject(User.class);
-
+                    saveRule(user.getRule());
                     checkUserRule(user.getRule());
 
                 } else {
@@ -90,32 +91,31 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
+    private void saveRule(String rule) {
+        SharedPreferences preferences = getSharedPreferences("user", MODE_PRIVATE);
+        preferences.edit().putString("rule", rule).apply();
+    }
+
     private void checkUserRule(String rule) {
         Intent intent;
 
         switch (rule) {
             case "user":
-                 intent = new Intent(LoginActivity.this, MainStudentActivity.class);
-
+                intent = new Intent(LoginActivity.this, MainStudentActivity.class);
                 break;
 
             case "admin":
-                 intent = new Intent(LoginActivity.this, MainAdminActivity.class);
-
+                intent = new Intent(LoginActivity.this, MainAdminActivity.class);
                 break;
 
             case "management":
-                 intent = new Intent(LoginActivity.this, MainActivity.class);
+                intent = new Intent(LoginActivity.this, MainActivity.class);
                 break;
+
             default:
                 throw new IllegalStateException("Unexpected value: " + rule);
         }
 
-        startActivity(intent);
-    }
-
-    private void navigateToStudentScreen() {
-        Intent intent = new Intent(LoginActivity.this, MainStudentActivity.class);
         startActivity(intent);
     }
 
