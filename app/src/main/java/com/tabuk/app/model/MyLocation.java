@@ -12,6 +12,10 @@ public class MyLocation {
         this.longitude = longitude;
     }
 
+    public MyLocation() {
+
+    }
+
     public String getName() {
         return name;
     }

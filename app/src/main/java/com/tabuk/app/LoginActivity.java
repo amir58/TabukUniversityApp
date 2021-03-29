@@ -134,7 +134,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void navigateToMapsVisitor() {
-        Intent intent = new Intent(LoginActivity.this, ShowMapsActivity.class);
+        Intent intent = new Intent(LoginActivity.this, VisitorsMapsActivity.class);
         startActivity(intent);
     }
 

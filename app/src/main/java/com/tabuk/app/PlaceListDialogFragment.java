@@ -5,7 +5,7 @@ import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
 
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
+import com.tabuk.app.model.MyLocation;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -14,12 +14,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import java.util.ArrayList;
 import java.util.List;
-
-import es.dmoral.toasty.Toasty;
 
 /**
  * <p>A fragment that shows a list of items as a modal bottom sheet.</p>
@@ -30,14 +26,17 @@ import es.dmoral.toasty.Toasty;
  */
 
 public class PlaceListDialogFragment extends BaseBottomSheet {
-    private final List<String> places = new ArrayList<>();
+    private List<MyLocation> myLocations;
+    private PlacesI placesI;
+
+    public PlaceListDialogFragment(List<MyLocation> myLocations, PlacesI placesI) {
+        this.myLocations = myLocations;
+        this.placesI = placesI;
+    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        for (int i = 1; i <= 30; i++) {
-            places.add("Place " + i);
-        }
     }
 
     @Nullable
@@ -51,7 +50,7 @@ public class PlaceListDialogFragment extends BaseBottomSheet {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         final RecyclerView recyclerView = view.findViewById(R.id.places_rv);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        recyclerView.setAdapter(new PlaceAdapter(places));
+        recyclerView.setAdapter(new PlaceAdapter(myLocations, placesI));
     }
 
     private class ViewHolder extends RecyclerView.ViewHolder {
@@ -66,11 +65,12 @@ public class PlaceListDialogFragment extends BaseBottomSheet {
     }
 
     private class PlaceAdapter extends RecyclerView.Adapter<ViewHolder> {
+        private final List<MyLocation> locations;
+        private PlacesI placesI;
 
-        private final List<String> places;
-
-        PlaceAdapter(List<String> places) {
-            this.places = places;
+        public PlaceAdapter(List<MyLocation> locations, PlacesI placesI) {
+            this.locations = locations;
+            this.placesI = placesI;
         }
 
         @NonNull
@@ -81,18 +81,25 @@ public class PlaceListDialogFragment extends BaseBottomSheet {
 
         @Override
         public void onBindViewHolder(ViewHolder holder, int position) {
-            holder.text.setText(places.get(position));
+            MyLocation myLocation = locations.get(position);
+
+            holder.text.setText(myLocation.getName());
 
             holder.itemView.setOnClickListener(v -> {
                 dismiss();
-                Toasty.info(v.getContext(), places.get(position)).show();
+                placesI.onPlaceClick(myLocation);
             });
         }
 
         @Override
         public int getItemCount() {
-            return places.size();
+            return locations.size();
         }
+
+    }
+
+    public interface PlacesI {
+        void onPlaceClick(MyLocation myLocation);
     }
 
 }
