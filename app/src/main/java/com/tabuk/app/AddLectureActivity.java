@@ -1,5 +1,6 @@
 package com.tabuk.app;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
@@ -8,9 +9,12 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.tabuk.app.databinding.ActivityAddLectureBinding;
 import com.tabuk.app.databinding.ActivityAddLocationBinding;
+import com.tabuk.app.model.MyLecture;
 
 import es.dmoral.toasty.Toasty;
 
@@ -42,6 +46,7 @@ public class AddLectureActivity extends AppCompatActivity {
     }
 
     public void addLecture(View view) {
+        String id = String.valueOf(System.currentTimeMillis());
         String courseName = binding.etCourseName.getText().toString().trim();
         String courseDay = binding.etCourseDay.getText().toString().trim();
         String courseTime = binding.etCourseTime.getText().toString().trim();
@@ -51,6 +56,22 @@ public class AddLectureActivity extends AppCompatActivity {
             return;
         }
 
+        MyLecture myLecture = new MyLecture(id, courseName, courseDay, courseTime, selectedFaculty, level);
+
+        firestore.collection("lectures").document(id).set(myLecture)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            Toasty.success(AddLectureActivity.this, "Lecture added").show();
+                            finish();
+
+                        } else {
+                            String errorMessage = task.getException().getLocalizedMessage();
+                            Toasty.error(AddLectureActivity.this, errorMessage).show();
+                        }
+                    }
+                });
 
     }
 
