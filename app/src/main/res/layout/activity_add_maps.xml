@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ShowMapsActivity">
+    tools:context=".AddMapsActivity">
 
     <fragment
         android:id="@+id/map"
@@ -15,12 +15,12 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_show_places"
-        android:onClick="showPlaces"
+        android:onClick="confirmLocation"
         android:layout_width="match_parent"
         map:layout_constraintBottom_toBottomOf="parent"
         android:layout_margin="@dimen/_10sdp"
         map:cornerRadius="@dimen/_10sdp"
-        android:text="@string/show_places"
+        android:text="@string/add_location"
         android:elevation="@dimen/_2sdp"
         android:layout_height="wrap_content"/>
 

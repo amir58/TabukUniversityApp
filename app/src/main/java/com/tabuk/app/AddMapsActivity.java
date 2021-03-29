@@ -2,9 +2,10 @@ package com.tabuk.app;
 
 import androidx.fragment.app.FragmentActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -13,14 +14,15 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-public class VisitorMapsActivity extends FragmentActivity implements OnMapReadyCallback, GoogleMap.OnMapClickListener {
+public class AddMapsActivity extends FragmentActivity implements OnMapReadyCallback, GoogleMap.OnMapClickListener {
 
     private GoogleMap mMap;
+    private LatLng latLng = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_visitor_maps);
+        setContentView(R.layout.activity_add_maps);
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
@@ -36,32 +38,40 @@ public class VisitorMapsActivity extends FragmentActivity implements OnMapReadyC
      * it inside the SupportMapFragment. This method will only be triggered once the user has
      * installed Google Play services and returned to the app.
      */
-
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
+
         mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
         // Add a marker in Sydney and move the camera
-        LatLng tabuk = new LatLng(25.174848907056965,37.276403456926346);
+        LatLng tabuk = new LatLng(25.174848907056965, 37.276403456926346);
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(tabuk, 16.5f));
 
         mMap.setOnMapClickListener(this);
 
-        mMap.addMarker(new MarkerOptions()
-                .position(new LatLng(25.1736752359273,37.276811487972736))
-                .title("Football stadium"));
-
     }
 
-    private static final String TAG = "VisitorMapsActivity";
     @Override
     public void onMapClick(LatLng latLng) {
-        Log.i(TAG, "onMapClick: " + latLng.latitude +"," + latLng.longitude);
+        mMap.clear();
+
+        this.latLng = latLng;
+
+        MarkerOptions markerOptions = new MarkerOptions().position(latLng);
+        mMap.addMarker(markerOptions);
     }
 
+    public void confirmLocation(View view) {
+        if (latLng == null) {
+            Toast.makeText(this, "Select location", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
-    public void showPlaces(View view) {
-        new PlaceListDialogFragment().show(getSupportFragmentManager(), "dialog");
+        Intent intent = new Intent(this, AddLocationActivity.class);
+        intent.putExtra("latLng", latLng);
+        startActivity(intent);
+
+        finish();
     }
 
 }
