@@ -10,11 +10,15 @@ import com.tabuk.app.model.MyLocation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -25,9 +29,12 @@ import java.util.List;
  * </pre>
  */
 
-public class PlaceListDialogFragment extends BaseBottomSheet {
+public class PlaceListDialogFragment extends BaseBottomSheet implements TextWatcher {
     private List<MyLocation> myLocations;
     private PlacesI placesI;
+
+    private PlaceAdapter adapter;
+    private EditText editTextSearch;
 
     public PlaceListDialogFragment(List<MyLocation> myLocations, PlacesI placesI) {
         this.myLocations = myLocations;
@@ -48,9 +55,33 @@ public class PlaceListDialogFragment extends BaseBottomSheet {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        editTextSearch = view.findViewById(R.id.et_search);
+        editTextSearch.addTextChangedListener(this);
         final RecyclerView recyclerView = view.findViewById(R.id.places_rv);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        recyclerView.setAdapter(new PlaceAdapter(myLocations, placesI));
+        adapter = new PlaceAdapter(myLocations, placesI);
+        recyclerView.setAdapter(adapter);
+    }
+
+    @Override
+    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+    }
+
+    @Override
+    public void onTextChanged(CharSequence s, int start, int before, int count) {
+        List<MyLocation> filterLocations = new ArrayList<>();
+        for (MyLocation myLocation : this.myLocations) {
+            if (myLocation.getName().toLowerCase().contains(s.toString().toLowerCase())) {
+                filterLocations.add(myLocation);
+            }
+        }
+        adapter.updateList(filterLocations);
+    }
+
+    @Override
+    public void afterTextChanged(Editable s) {
+
     }
 
     private class ViewHolder extends RecyclerView.ViewHolder {
@@ -65,13 +96,19 @@ public class PlaceListDialogFragment extends BaseBottomSheet {
     }
 
     private class PlaceAdapter extends RecyclerView.Adapter<ViewHolder> {
-        private final List<MyLocation> locations;
+        private List<MyLocation> locations;
         private PlacesI placesI;
 
         public PlaceAdapter(List<MyLocation> locations, PlacesI placesI) {
             this.locations = locations;
             this.placesI = placesI;
         }
+
+        public void updateList(List<MyLocation> locations) {
+            this.locations = locations;
+            notifyDataSetChanged();
+        }
+
 
         @NonNull
         @Override
