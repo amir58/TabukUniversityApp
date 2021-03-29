@@ -30,7 +30,7 @@
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:padding="@dimen/_10sdp"
-                android:text="View Map"
+                android:text="Add Locations"
                 android:textColor="@color/green"
                 android:textSize="@dimen/_22sdp" />
         </com.google.android.material.card.MaterialCardView>
@@ -41,8 +41,9 @@
             android:layout_height="0dp"
             android:layout_margin="@dimen/_10sdp"
             android:elevation="@dimen/_2sdp"
+            android:visibility="gone"
             app:cardCornerRadius="@dimen/_10sdp"
-            app:layout_constraintBottom_toTopOf="@+id/update_profile_layout"
+            app:layout_constraintBottom_toTopOf="@+id/send_notification_layout"
             app:layout_constraintEnd_toStartOf="@id/lectures_layout"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/map_layout">
@@ -58,7 +59,7 @@
         </com.google.android.material.card.MaterialCardView>
 
         <com.google.android.material.card.MaterialCardView
-            android:id="@+id/update_profile_layout"
+            android:id="@+id/send_notification_layout"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_margin="@dimen/_10sdp"
@@ -74,9 +75,9 @@
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:padding="@dimen/_10sdp"
-                android:text="Send Notifications"
+                android:text="Send\nNotifications"
                 android:textColor="@color/green"
-                android:textSize="@dimen/_20sdp" />
+                android:textSize="@dimen/_18sdp" />
         </com.google.android.material.card.MaterialCardView>
 
         <com.google.android.material.card.MaterialCardView
@@ -108,6 +109,7 @@
             android:layout_height="0dp"
             android:layout_margin="@dimen/_10sdp"
             android:elevation="@dimen/_2sdp"
+            android:visibility="gone"
             app:cardCornerRadius="@dimen/_10sdp"
             app:layout_constraintBottom_toTopOf="@+id/change_password_layout"
             app:layout_constraintEnd_toEndOf="parent"
@@ -133,7 +135,7 @@
             app:cardCornerRadius="@dimen/_10sdp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/update_profile_layout"
+            app:layout_constraintStart_toEndOf="@id/send_notification_layout"
             app:layout_constraintTop_toBottomOf="@id/lectures_layout">
 
             <TextView

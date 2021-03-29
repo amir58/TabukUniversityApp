@@ -20,7 +20,7 @@ public class MainAdminActivity extends AppCompatActivity {
         binding.mapLayout.setOnClickListener(v -> startActivity(new Intent(this, AddMapsActivity.class)));
         binding.examLayout.setOnClickListener(v -> startActivity(new Intent(this, ExamsActivity.class)));
         binding.lecturesLayout.setOnClickListener(v -> startActivity(new Intent(this, LecturesActivity.class)));
-        binding.updateProfileLayout.setOnClickListener(v -> startActivity(new Intent(this, UpdateProfileActivity.class)));
+        binding.sendNotificationLayout.setOnClickListener(v -> startActivity(new Intent(this, AddNotificationActivity.class)));
         binding.changePasswordLayout.setOnClickListener(v -> startActivity(new Intent(this, ChangePasswordActivity.class)));
 
     }
