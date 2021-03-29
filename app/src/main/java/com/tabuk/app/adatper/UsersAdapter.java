@@ -1,5 +1,6 @@
 package com.tabuk.app.adatper;
 
+import android.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
@@ -52,6 +53,23 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.LectureHolde
             firestore.collection("users").document(user.getAuthId()).update(map);
         });
 
+        holder.binding.btnRule.setOnClickListener(
+                v -> new AlertDialog.Builder(v.getContext())
+                        .setMessage("Choose rule ")
+                        .setPositiveButton("Admin", (dialog, which) -> {
+                            Map<String, Object> map = new HashMap<>();
+                            map.put("rule", "admin");
+
+                            firestore.collection("users").document(user.getAuthId()).update(map);
+                        })
+                        .setNegativeButton("Management", (dialog, which) -> {
+                            Map<String, Object> map = new HashMap<>();
+                            map.put("rule", "management");
+
+                            firestore.collection("users").document(user.getAuthId()).update(map);
+                        })
+                        .show()
+        );
     }
 
     @Override

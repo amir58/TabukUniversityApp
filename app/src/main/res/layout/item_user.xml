@@ -32,6 +32,15 @@
                 tools:text="Username" />
 
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnRule"
+                android:layout_margin="@dimen/_10sdp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@{user.rule}"
+                app:layout_constraintTop_toBottomOf="@id/username"
+                tools:text="User" />
+
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnDelete"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -41,7 +50,7 @@
                 app:layout_constraintEnd_toStartOf="@+id/btnStopActive"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/username" />
+                app:layout_constraintTop_toBottomOf="@id/btnRule" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnStopActive"
@@ -53,7 +62,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/btnDelete"
-                app:layout_constraintTop_toBottomOf="@id/username" />
+                app:layout_constraintTop_toBottomOf="@id/btnRule" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
