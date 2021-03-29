@@ -15,7 +15,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TabukUniverstyApp">
-        <activity android:name=".AddNotificationActivity"></activity>
+        <activity android:name=".AddLectureActivity"></activity>
+        <activity android:name=".MainManagementActivity" />
+        <activity android:name=".AddNotificationActivity" />
         <activity android:name=".AddLocationActivity" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.

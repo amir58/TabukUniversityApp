@@ -21,4 +21,8 @@
     <string name="notification_content">Notification content</string>
     <string name="level">Level</string>
     <string name="add_notification">Add Notification</string>
+    <string name="course_name">Course name</string>
+    <string name="course_day">Course day</string>
+    <string name="course_time">Course time</string>
+    <string name="add_lecture">Add Lecture</string>
 </resources>
