@@ -12,6 +12,9 @@ public class MyNotification {
         this.level = level;
     }
 
+    public MyNotification() {
+    }
+
     public String getContent() {
         return content;
     }

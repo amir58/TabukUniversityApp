@@ -25,4 +25,6 @@
     <string name="course_day">Course day</string>
     <string name="course_time">Course time</string>
     <string name="add_lecture">Add Lecture</string>
+    <string name="select_location">Select location</string>
+    <string name="title_activity_show_place_on_maps">Map</string>
 </resources>

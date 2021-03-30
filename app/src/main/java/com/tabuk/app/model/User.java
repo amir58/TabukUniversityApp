@@ -8,16 +8,26 @@ public class User {
     private String rule = "user";
     private String authId;
     private String faculty;
+    private String level;
 
     public User() {
     }
 
-    public User(String name, String id, String phone, String authId, String faculty) {
+    public User(String name, String id, String phone, String authId, String faculty, String level) {
         this.name = name;
         this.id = id;
         this.phone = phone;
         this.authId = authId;
         this.faculty = faculty;
+        this.level = level;
+    }
+
+    public String getLevel() {
+        return level;
+    }
+
+    public void setLevel(String level) {
+        this.level = level;
     }
 
     public String getFaculty() {

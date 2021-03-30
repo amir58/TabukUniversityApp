@@ -8,14 +8,37 @@ public class MyLecture {
     private String time;
     private String faculty;
     private String level;
+    private double lat;
+    private double lng;
 
-    public MyLecture(String id, String name, String day, String time, String faculty, String level) {
+    public MyLecture(String id, String name, String day, String time, String faculty, String level, double lat, double lng) {
         this.id = id;
         this.name = name;
         this.day = day;
         this.time = time;
         this.faculty = faculty;
         this.level = level;
+        this.lat = lat;
+        this.lng = lng;
+    }
+
+    public MyLecture() {
+    }
+
+    public double getLat() {
+        return lat;
+    }
+
+    public void setLat(double lat) {
+        this.lat = lat;
+    }
+
+    public double getLng() {
+        return lng;
+    }
+
+    public void setLng(double lng) {
+        this.lng = lng;
     }
 
     public String getId() {

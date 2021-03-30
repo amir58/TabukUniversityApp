@@ -72,16 +72,19 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void getUserData() {
-
-
         firestore.collection("users").document(auth.getUid())
                 .get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 if (task.isSuccessful()) {
                     User user = task.getResult().toObject(User.class);
-                    saveRule(user.getRule());
-                    checkUserRule(user.getRule());
+                    if (user.isActive()) {
+                        saveUser(user);
+                        checkUserRule(user.getRule());
+
+                    } else {
+                        Toasty.error(LoginActivity.this, "You are not active yet").show();
+                    }
 
                 } else {
                     String errorMessage = task.getException().getLocalizedMessage();
@@ -91,9 +94,11 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    private void saveRule(String rule) {
+    private void saveUser(User user) {
         SharedPreferences preferences = getSharedPreferences("user", MODE_PRIVATE);
-        preferences.edit().putString("rule", rule).apply();
+        preferences.edit().putString("rule", user.getRule()).apply();
+        preferences.edit().putString("faculty", user.getFaculty()).apply();
+        preferences.edit().putString("level", user.getLevel()).apply();
     }
 
     private void checkUserRule(String rule) {
@@ -109,7 +114,7 @@ public class LoginActivity extends AppCompatActivity {
                 break;
 
             case "management":
-                intent = new Intent(LoginActivity.this, MainActivity.class);
+                intent = new Intent(LoginActivity.this, MainManagementActivity.class);
                 break;
 
             default:

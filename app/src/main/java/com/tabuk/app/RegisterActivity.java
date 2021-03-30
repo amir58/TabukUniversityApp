@@ -28,11 +28,30 @@ public class RegisterActivity extends AppCompatActivity {
 
     String selectedFaculty = "";
 
+    String[] levels = {
+            "Level one",
+            "Level Two",
+            "Level Three",
+            "Level Four",
+            "Level Five",
+            "Level Six",
+            "Level Seven",
+            "Level Eight"
+    };
+
+    String selectedLevel = "";
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_register);
 
+        initFaculties();
+        initLevels();
+    }
+
+    private void initFaculties() {
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, faculties);
         binding.faculties.setAdapter(adapter);
 
@@ -40,6 +59,19 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 selectedFaculty = faculties[position];
+            }
+        });
+    }
+
+
+    private void initLevels() {
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, levels);
+        binding.levels.setAdapter(adapter);
+
+        binding.levels.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                selectedLevel = levels[position];
             }
         });
     }
@@ -56,7 +88,7 @@ public class RegisterActivity extends AppCompatActivity {
             return;
         }
 
-        User user = new User(name, id, phone, "authId", selectedFaculty);
+        User user = new User(name, id, phone, "authId", selectedFaculty, selectedLevel);
 
         auth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
