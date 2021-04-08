@@ -39,7 +39,7 @@ public class ShowPlaceOnMapsActivity extends FragmentActivity implements OnMapRe
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
         double lat = getIntent().getDoubleExtra("lat",0);
-        double lng = getIntent().getDoubleExtra("lat",0);
+        double lng = getIntent().getDoubleExtra("lng",0);
 
         // Add a marker in Sydney and move the camera
         LatLng sydney = new LatLng(lat, lng);
